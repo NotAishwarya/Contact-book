@@ -1,5 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Address, Contact } from '../model/contact.model';
+import { Observable, of } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +35,13 @@ export class ContactDataService implements OnDestroy {
   deleteContact(i: number) {
     this.contactList.splice(i, 1);
     localStorage.setItem("contactList", JSON.stringify(this.contactList));
+  }
+
+  isNameExistent(name: string) {
+    for (let contact of this.contactList)
+      if (contact.name === name)
+        return of(true).pipe(delay(1500));
+
+    return of(false).pipe(delay(1500));
   }
 }

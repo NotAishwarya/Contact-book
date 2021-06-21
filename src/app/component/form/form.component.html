@@ -1,5 +1,5 @@
 <p class="toast">{{message}}</p>
-form
+
 <div class="form-container">
     <form [formGroup]="contactForm" class="contact-form">
 
@@ -7,9 +7,14 @@ form
             <div class="error-message" *ngIf="contactForm.get('uname')?.errors?.required">Name is required</div>
             <div class="error-message" *ngIf="contactForm.get('uname')?.errors?.minlength">Name must be at least 3
                 characters long</div>
+            <div class="error-message" *ngIf="contactForm.get('uname')?.errors?.nameExists">Name
+                already
+                exists</div>
         </div>
         <div class="main-form">
-            <label for="uname">Name : </label><br>
+            <label for="uname">Name : </label>
+            <img id="loadbar" *ngIf="contactForm.get('uname')?.status == 'PENDING'"
+                src="https://www.pngkey.com/png/full/866-8669429_800-x-800-2-loading-clipart.png"><br>
             <input type="text" formControlName="uname" placeholder="Name"><span class="required-symbol">*</span>
         </div>
         <br>
@@ -51,7 +56,8 @@ form
             <button (click)="addAddressForm()" class="add-address-btn">ADD ADDRESS</button>
         </div>
 
-        <button (click)="submitForm()" [disabled]="!contactForm.valid" class="create-contact-btn">CREATE
+        <button (click)="submitForm()" [disabled]="!contactForm.valid && contactForm.get('uname')?.status == 'PENDING'"
+            class="create-contact-btn">CREATE
             CONTACT</button><span *ngIf="!contactForm.valid" class="error-message">Fill required fields</span>
 
 

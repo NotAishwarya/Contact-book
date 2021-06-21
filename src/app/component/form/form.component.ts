@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormArray, Form, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, FormArray, Form, Validators, AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ContactDataService } from 'src/app/service/contact-data.service';
 
 @Component({
@@ -11,13 +13,21 @@ export class FormComponent implements OnInit {
 
   message: string = "";
   contactForm = this.fb.group({
-    uname: ['', [Validators.required, Validators.minLength(3)]],
+    uname: ['', [Validators.required, Validators.minLength(3)], this.unameValidator()],
     uaddress: this.fb.array([
       this.newAddressForm()
     ])
   });;
 
   constructor(private fb: FormBuilder, private contactDataService: ContactDataService) { }
+
+  unameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.contactDataService.isNameExistent(control.value).pipe(
+        map((result: boolean) => result ? { nameExists: true } : null)
+      );
+    };
+  }
 
   addAddressForm() {
     this.getAddressFormArray()?.push(this.newAddressForm());

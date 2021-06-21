@@ -27,6 +27,11 @@ $shadowGray : #373737;
         margin: auto;
         .main-form{
            margin: 0px;
+           #loadbar{
+            animation: spin 4s linear infinite;
+            width: 15px;
+            height: 15px;
+            }
         }
         .address-container{
             .address-form{
@@ -80,4 +85,9 @@ $shadowGray : #373737;
 .required-symbol{
     vertical-align: top;
     margin-left: 2px;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
 }
