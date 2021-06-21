@@ -1,0 +1,30 @@
+
+
+$buttonBackground: #D348C5;
+$buttonTextColor: #F6F7FB;
+
+h1{
+    text-align: center;
+    color: white;
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: center;
+    .nav-button{  
+        margin: 2px;
+        border-radius: 15px;
+        padding: 10px;
+        width: 15%;
+        cursor: pointer;
+        font-weight: bolder;
+        border: solid 1px transparent;
+        color: $buttonBackground;
+        background-color: $buttonTextColor;
+    }
+
+    .active-button{
+        color: $buttonTextColor;
+       background-color: $buttonBackground;
+    }
+}

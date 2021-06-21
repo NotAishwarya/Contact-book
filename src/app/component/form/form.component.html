@@ -1,0 +1,58 @@
+<p class="toast">{{message}}</p>
+<div class="form-container">
+    <form [formGroup]="contactForm" class="contact-form">
+
+        <div *ngIf=" contactForm.get('uname')?.touched && contactForm.get('uname')?.errors">
+            <div class="error-message" *ngIf="contactForm.get('uname')?.errors?.required">Name is required</div>
+            <div class="error-message" *ngIf="contactForm.get('uname')?.errors?.minlength">Name must be at least 3
+                characters long</div>
+        </div>
+        <div class="main-form">
+            <label for="uname">Name : </label><br>
+            <input type="text" formControlName="uname" placeholder="Name"><span class="required-symbol">*</span>
+        </div>
+        <br>
+
+        <div formArrayName="uaddress" class="address-container">
+
+            <div *ngFor="let address of getAddressFormArray().controls; index as i" class="address-form">
+                <div [formGroupName]="i">
+
+                    <div class="error-message"
+                        *ngIf="getAddressFormGroupAtIndex(i)?.controls?.street?.touched && getAddressFormGroupAtIndex(i)?.controls?.street?.errors">
+                        Street is required
+                    </div>
+                    <div class="error-message"
+                        *ngIf="getAddressFormGroupAtIndex(i)?.controls?.city?.touched && getAddressFormGroupAtIndex(i)?.controls?.city?.errors?.required">
+                        City is required
+                    </div>
+                    <div class="error-message"
+                        *ngIf="getAddressFormGroupAtIndex(i)?.controls?.pincode?.touched && getAddressFormGroupAtIndex(i)?.controls?.pincode?.errors?.required">
+                        Invalid Pincode</div>
+
+                    <label for="street">Street : </label><br>
+                    <input type="text" placeholder="Street" formControlName="street">
+                    <span class="required-symbol">*</span>
+                    <br>
+
+                    <label for="city">City : </label><br>
+                    <input type="text" placeholder="City" formControlName="city">
+                    <span class="required-symbol">*</span>
+                    <br>
+
+                    <label for="city">Pincode : </label><br>
+                    <input type="number" placeholder="Pincode" formControlName="pincode">
+                    <span class="required-symbol">*</span>
+                </div>
+                <button *ngIf="i!=0" (click)="deleteAddressForm(i)" class="fas fa-trash-alt delete-btn"></button>
+            </div>
+
+            <button (click)="addAddressForm()" class="add-address-btn">ADD ADDRESS</button>
+        </div>
+
+        <button (click)="submitForm()" [disabled]="!contactForm.valid" class="create-contact-btn">CREATE
+            CONTACT</button><span *ngIf="!contactForm.valid" class="error-message">Fill required fields</span>
+
+
+    </form>
+</div>

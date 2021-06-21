@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'contact-book';
+
+  isActive(path: string) {
+    return (location.pathname == path);
+  }
 }

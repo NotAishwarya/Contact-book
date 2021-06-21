@@ -1,0 +1,83 @@
+
+$formBackground : #F2F5F9;
+$buttonBackground: #D348C5;
+$buttonTextColor: #F6F7FB;
+$grey : #E4E4E4;
+$shadowGray : #373737;
+
+.toast{
+    color: $shadowGray;
+    font-size: 0.83em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-container{
+
+    background-color: $formBackground;
+    width: 55%;
+    margin: 2% auto;
+    padding: 3%;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 3px 3px 5px #888888;
+    color: $shadowGray;
+    .contact-form{
+        width: 40%;
+        margin: auto;
+        .main-form{
+           margin: 0px;
+        }
+        .address-container{
+            .address-form{
+                margin: 27px 0px;
+                display: flex;
+               .delete-btn{
+                    background: transparent;
+                    color: red;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 20px;
+                    margin: 30px;
+                    align-self: flex-start;
+                    
+               }
+            }
+
+             .add-address-btn{
+                    margin: 2px;
+                    border-radius: 2px;
+                    padding: 5px;
+                    cursor: pointer;
+                    font-weight: bolder;
+                    border: solid 1px transparent;
+                    color: $buttonTextColor;
+                    background-color: $buttonBackground;
+                }
+        }
+        .create-contact-btn{
+            margin: 20px 5px 20px 0px;
+            border-radius: 2px;
+            padding: 5px;
+            font-weight: bolder;
+            cursor: pointer;
+            border: solid 1px transparent;
+            color: $buttonTextColor;
+            background-color: $buttonBackground;
+        }
+        .create-contact-btn:disabled{
+            cursor: no-drop;
+            background-color: mix($buttonBackground,  white,  45%);
+        }
+
+    }
+}
+.error-message, .required-symbol{
+    color: red;
+    font-size: 0.7em;
+}
+
+.required-symbol{
+    vertical-align: top;
+    margin-left: 2px;
+}

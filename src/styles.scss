@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+$buttonBackground: #D348C5;
+$websiteBackground: #E9BCC2;
+
+*{
+    font-family:'Poppins', 'Montserrat', sans-serif;
+}
+body{
+    background-color: $websiteBackground;
+}

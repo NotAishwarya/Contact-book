@@ -1,0 +1,22 @@
+<div class="contact-container">
+    <table class="contact-table">
+        <tr class="contact-header">
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+        <tr *ngFor="let contact of contactList; index as i" class="contact-row">
+            <th>{{i+1}}</th>
+            <th>{{contact.name}}</th>
+            <th>
+                <div *ngFor="let address of contact.address; index as ai">
+                    {{address.street}},
+                    <br>
+                    {{address.city}} - {{address.pincode}}
+                    <hr *ngIf="ai!=contact.address.length-1" class="address-seperator">
+                </div>
+
+            </th>
+        </tr>
+    </table>
+</div>
